@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Container } from "react-bootstrap";
 import Header from "./components/Header";
@@ -16,7 +15,6 @@ const App = () => {
           <Container>
             <Route path="/" exact component={HomeScreen}></Route>
             <Route path="/product/:id" component={ProductScreen}></Route>
-            <HomeScreen></HomeScreen>
           </Container>
         </main>
         <Footer></Footer>
