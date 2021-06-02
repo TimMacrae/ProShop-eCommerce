@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button } from "react-bootstrap";
 import Rating from "../components/Product/Rating";
-import products from "../products";
+import { getProduct } from "../api/apiProductsController";
 
 export default function ProductScreen({ match }) {
-  const product = products.find((product) => product._id === match.params.id);
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    getProduct(match.params.id)
+      .then((p) => {
+        setProduct(p);
+      })
+      .catch((err) => console.log(err));
+  }, [match.params.id]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
