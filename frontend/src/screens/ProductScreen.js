@@ -9,7 +9,7 @@ import Message from "../components/Message";
 
 export default function ProductScreen({ match }) {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
+  const productList = useSelector((state) => state.productDetails);
   const { loading, error, productDetails } = productList;
 
   useEffect(() => {
