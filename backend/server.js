@@ -6,16 +6,19 @@ import colors from "colors";
 import productRouter from "./routes/productRoutes.js";
 import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import userRouter from "./routes/userRoutes.js";
 
 dotenv.config();
 connectDB();
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
 app.use("/api", productRouter);
+app.use("/api/users", userRouter);
 
 app.use(notFound);
 app.use(errorHandler);
