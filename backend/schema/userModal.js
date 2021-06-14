@@ -27,9 +27,20 @@ const userSchema = mongoose.Schema(
   }
 );
 
+//ADD METHOD TO bcryypt THE PASSWORD
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+
+//ADD MIDDLEWARE userSchema.pre('save') to bcrypt password
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model("User", userSchema);
 

@@ -1,6 +1,33 @@
 import User from "../schema/userModal.js";
 import generateToken from "../utils/generateToken.js";
 
+// @desc    Aregister a new user
+// @route   Post /api/users
+// @access  Public
+export const registerUser = async (email, password, name) => {
+  const userExist = await User.findOne({ email });
+  if (userExist) {
+    return "User already exist";
+  } else {
+    const user = await User.create({
+      name: name,
+      email: email,
+      password: password,
+    });
+    if (user) {
+      return {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        token: generateToken(user._id),
+      };
+    } else {
+      return "Invalid user data";
+    }
+  }
+};
+
 // @desc    Auth user & get token
 // @route   Post /api/users/login
 // @access  Public

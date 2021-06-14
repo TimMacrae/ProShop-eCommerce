@@ -1,9 +1,35 @@
 import express from "express";
-import { authUser, getUserProfile } from "../controllers/userController.js";
+import {
+  authUser,
+  getUserProfile,
+  registerUser,
+} from "../controllers/userController.js";
 import asyncHandler from "express-async-handler";
 import { protect } from "../middleware/authMiddleware.js";
 
 const userRouter = express.Router();
+
+// @desc    Auth user & get token
+// @route   Post /api/users/login
+// @access  Public
+userRouter.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { email, password, name } = req.body;
+    const user = await registerUser(email, password, name);
+    if (user === "Invalid user data") {
+      res.status(400);
+      throw new Error("Invalid user data");
+    }
+    if (user === "User already exist") {
+      res.status(400);
+      throw new Error("User already exist");
+    }
+    if (user && user !== "User already exist" && user !== "Invalid user data") {
+      res.json(user);
+    }
+  })
+);
 
 // @desc    Auth user & get token
 // @route   Post /api/users/login
