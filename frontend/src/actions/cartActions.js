@@ -20,10 +20,25 @@ export const addToCartAction = (id, qty) => async (dispatch, getState) => {
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
 
-export const removeFromCartAction = (_id) => async (dispatch, getState) => {
-  dispatch({
-    type: CART_REMOVE_ITEM,
-    payload: _id,
-  });
-  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+// export const removeFromCartAction = (_id) => async (dispatch, getState) => {
+//   dispatch({
+//     type: CART_REMOVE_ITEM,
+//     payload: _id,
+//   });
+//   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+// };
+
+////////////////////
+//SAME WAY LIKE AMZ
+export const removeFromCartAction = (_id) => {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: CART_REMOVE_ITEM,
+      payload: _id,
+    });
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(getState().cart.cartItems)
+    );
+  };
 };

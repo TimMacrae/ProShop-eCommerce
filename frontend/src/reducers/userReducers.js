@@ -4,11 +4,9 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGOUT,
 } from "./constants/userConstance";
-const initialState = {
-  userInfo: {},
-};
+import { USER_STATE } from "../actions/userActions";
 
-export const userReducer = (state = initialState, { type, payload }) => {
+export const userReducer = (state = USER_STATE, { type, payload }) => {
   switch (type) {
     case USER_LOGIN_REQUEST:
       return { loading: true };
