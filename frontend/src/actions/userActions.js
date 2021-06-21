@@ -1,3 +1,4 @@
+//ACTIONS
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -5,6 +6,11 @@ import {
   USER_LOGOUT_LOGOUT,
 } from "../reducers/constants/userConstance";
 import axios from "axios";
+
+//DEFAULT STATE
+export const USER_STATE = {
+  userInfo: {},
+};
 
 export const loginAction = (email, password) => async (dispatch) => {
   try {
