@@ -39,6 +39,7 @@ userRouter.post(
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const user = await authUser(email, password);
+    console.log("be", user);
     if (user && user !== "Invalid Email or Password") {
       res.json(user);
     } else {
