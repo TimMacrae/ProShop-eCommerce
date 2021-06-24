@@ -9,12 +9,13 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const userRouter = express.Router();
 
-// @desc    Auth user & get token
-// @route   Post /api/users/login
+// @desc    Register user
+// @route   Post /api/users
 // @access  Public
 userRouter.post(
   "/",
   asyncHandler(async (req, res) => {
+    console.log(req.body);
     const { email, password, name } = req.body;
     const user = await registerUser(email, password, name);
     if (user === "Invalid user data") {

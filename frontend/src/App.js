@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import DashboardScreen from "./screens/DashboardScreen";
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
         <Header></Header>
         <main>
           <Container>
+            <Route path="/dashboard" exact component={DashboardScreen}></Route>
+            <Route path="/register" exact component={RegisterScreen}></Route>
             <Route path="/login" exact component={LoginScreen}></Route>
             <Route path="/product/:id" component={ProductScreen}></Route>
             <Route path="/cart/:id?" component={CartScreen}></Route>
