@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Form } from "react-bootstrap";
 import Rating from "../components/Product/Rating";
@@ -23,7 +23,7 @@ export default function ProductScreen({ history, match }) {
   };
 
   return (
-    <>
+    <Fragment>
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
@@ -114,6 +114,6 @@ export default function ProductScreen({ history, match }) {
           </Col>
         </Row>
       ) : null}
-    </>
+    </Fragment>
   );
 }

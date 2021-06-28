@@ -16,7 +16,7 @@ export default function LoginScreen({ location, history }) {
   const [password, setPassword] = useState("");
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
-
+  console.log("LOGIN", location);
   // REDIRECT IF THE USER LOGIN IS CHNAGE
   useEffect(() => {
     if (userInfo) {

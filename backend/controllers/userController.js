@@ -14,6 +14,7 @@ export const registerUser = async (email, password, name) => {
       email: email,
       password: password,
     });
+
     if (user) {
       return {
         _id: user._id,

@@ -15,9 +15,10 @@ const userRouter = express.Router();
 userRouter.post(
   "/",
   asyncHandler(async (req, res) => {
-    console.log(req.body);
     const { email, password, name } = req.body;
+
     const user = await registerUser(email, password, name);
+
     if (user === "Invalid user data") {
       res.status(400);
       throw new Error("Invalid user data");
@@ -26,7 +27,8 @@ userRouter.post(
       res.status(400);
       throw new Error("User already exist");
     }
-    if (user && user !== "User already exist" && user !== "Invalid user data") {
+    console.log(user);
+    if (user) {
       res.json(user);
     }
   })
