@@ -52,10 +52,39 @@ export const authUser = async (email, password) => {
 // @access  Private
 export const getUserProfile = async (_id) => {
   const user = await User.findById(_id);
-  return {
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    isAdmin: user.isAdmin,
-  };
+  if (user) {
+    return {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    };
+  } else {
+    return "Can't find your profile";
+  }
+};
+
+// @desc    update user profile
+// @route   PUT /api/users/profile
+// @access  Private
+export const updateUserProfile = async (_id, updateUser) => {
+  const user = await User.findById(_id);
+  if (user) {
+    (user.name = updateUser.name || user.name),
+      (user.email = updateUser.email || user.email);
+    if (updateUser.password) {
+      user.password = updateUser.password;
+    }
+
+    const updatedUser = await user.save();
+    return {
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    };
+  } else {
+    return "Can't update your profile";
+  }
 };

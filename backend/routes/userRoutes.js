@@ -3,6 +3,7 @@ import {
   authUser,
   getUserProfile,
   registerUser,
+  updateUserProfile,
 } from "../controllers/userController.js";
 import asyncHandler from "express-async-handler";
 import { protect } from "../middleware/authMiddleware.js";
@@ -65,6 +66,27 @@ userRouter.get(
     } else {
       res.status(404);
       throw new Error("User not found");
+    }
+  })
+);
+
+// @desc    Get user profile
+// @route   GET /api/users/profile
+// @access  Private
+userRouter.put(
+  "/profile/update",
+  protect,
+  asyncHandler(async (req, res) => {
+    const user = await updateUserProfile(req.body._id, req.body.updateUser);
+    if (user === "Can't update your profile") {
+      res.status(404);
+      throw new Error("Can't update your profile");
+    }
+    if (user && user !== "Can't update your profile") {
+      res.json(user);
+    } else {
+      res.status(404);
+      throw new Error("Something went wrong");
     }
   })
 );
