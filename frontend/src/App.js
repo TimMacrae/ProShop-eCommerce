@@ -17,6 +17,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import DashboardHomeScreen from "./components/Dashboard/screens/DashboardHomeScreen";
 import UserProfileScreen from "./components/Dashboard/screens/UserProfileScreen";
+import Githup from "./screens/Githup";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Header></Header>
         <main>
           <Container>
+            <Route path="/github" exact component={Githup}></Route>
             <Route path="/register" exact component={RegisterScreen}></Route>
             <Route path="/login" exact component={LoginScreen}></Route>
             <Route path="/product/:id" component={ProductScreen}></Route>

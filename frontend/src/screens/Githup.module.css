@@ -1,0 +1,9 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: 0.5px solid rgba(134, 134, 134, 0.5);
+  padding-bottom: 10px;
+}

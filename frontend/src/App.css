@@ -13,3 +13,8 @@
   margin-bottom: 20px;
   text-underline-position: below;
 }
+
+pre {
+  padding: 0;
+  border: 0;
+}

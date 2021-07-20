@@ -39,6 +39,9 @@ const Header = () => {
             <Link to="/cart" className="mr-3" style={{ marginTop: "10px" }}>
               <i className="fas fa-shopping-cart  pr-1"></i> Cart
             </Link>
+            <Link to="/github" className="mr-3" style={{ marginTop: "10px" }}>
+              <i className="fas fa-shopping-cart  pr-1"></i> Github
+            </Link>
 
             {userInfo ? (
               <NavDropdown title={userInfo.name} id="username">
